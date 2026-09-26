@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Enciclopédia — Inteligência Artificial e Biotecnologia</title>
+
+<style>
+
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    color:#e8f1f8;
+    background:#071018;
+    line-height:1.7;
+}
+
+/* =========================
+   FUNDO
+========================= */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+        radial-gradient(circle at 20% 20%, #0066ff18, transparent 35%),
+        radial-gradient(circle at 80% 80%, #00c87812, transparent 35%);
+    z-index:-1;
+}
+
+/* =========================
+   CABEÇALHO
+========================= */
+
+header{
+    text-align:center;
+    padding:35px 20px;
+    background:#0b1620;
+    border-bottom:1px solid #234052;
+}
+
+header h1{
+    font-size:2.2em;
+    color:#36c5f0;
+    margin-bottom:8px;
+}
+
+header p{
+    color:#aebdca;
+    max-width:800px;
+    margin:auto;
+}
+
+/* =========================
+   MENU
+========================= */
+
+.menu{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    flex-wrap:wrap;
+    padding:18px;
+    background:#09131c;
+    border-bottom:1px solid #1b303d;
+}
+
+.menu button{
+    padding:10px 17px;
+    background:#0d1c27;
+    color:#dce9f1;
+    border:1px solid #294655;
+    border-radius:6px;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.menu button:hover{
+    background:#123044;
+    border-color:#36c5f0;
+}
+
+/* =========================
+   SEÇÕES
+========================= */
+
+.section{
+    display:none;
+
+    max-width:1000px;
+    margin:30px auto;
+    padding:30px;
+
+    background:#0b1720;
+    border:1px solid #1e3644;
+    border-radius:10px;
+}
+
+.section.active{
+    display:block;
+}
+
+.section h2{
+    color:#36c5f0;
+    margin-bottom:20px;
+    border-bottom:1px solid #244352;
+    padding-bottom:10px;
+}
+
+.section h3{
+    color:#71d6a5;
+    margin-top:25px;
+    margin-bottom:10px;
+}
+
+.section p{
+    margin-bottom:15px;
+    color:#d4e0e7;
+}
+
+.section ul{
+    margin:10px 0 20px 25px;
+}
+
+.section li{
+    margin:7px 0;
+}
+
+/* =========================
+   CAIXAS DE INFORMAÇÃO
+========================= */
+
+.info{
+    background:#09131b;
+    border-left:4px solid #36c5f0;
+    padding:18px;
+    margin:20px 0;
+    border-radius:5px;
+}
+
+.info strong{
+    color:#36c5f0;
+}
+
+/* =========================
+   TABELAS
+========================= */
+
+.table-container{
+    overflow-x:auto;
+    margin:20px 0;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:#09131b;
+}
+
+th,
+td{
+    border:1px solid #263d49;
+    padding:12px;
+    text-align:left;
+}
+
+th{
+    background:#102431;
+    color:#36c5f0;
+}
+
+td{
+    color:#d5e0e6;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:15px;
+    margin-top:20px;
+}
+
+.card{
+    background:#09131b;
+    border:1px solid #223c49;
+    padding:20px;
+    border-radius:8px;
+}
+
+.card h3{
+    margin-top:0;
+    color:#36c5f0;
+}
+
+.card p{
+    font-size:0.95em;
+}
+
+/* =========================
+   GLOSSÁRIO
+========================= */
+
+.term{
+    padding:15px 0;
+    border-bottom:1px solid #1c303b;
+}
+
+.term:last-child{
+    border-bottom:none;
+}
+
+.term strong{
+    color:#71d6a5;
+}
+
+/* =========================
+   QUIZ
+========================= */
+
+.quiz{
+    margin-top:20px;
+}
+
+.quiz button{
+    display:block;
+    width:100%;
+    margin:10px 0;
+    padding:13px;
+
+    background:#102431;
+    color:white;
+
+    border:1px solid #294655;
+    border-radius:6px;
+
+    cursor:pointer;
+    text-align:left;
+}
+
+.quiz button:hover{
+    background:#143448;
+    border-color:#36c5f0;
+}
+
+#resultado{
+    margin-top:20px;
+    padding:15px;
+    background:#09131b;
+    border-left:4px solid #71d6a5;
+    color:#71d6a5;
+}
+
+/* =========================
+   RODAPÉ
+========================= */
+
+footer{
+    text-align:center;
+    padding:30px 20px;
+    margin-top:40px;
+
+    background:#09131b;
+    border-top:1px solid #1d3542;
+
+    color:#8799a5;
+    font-size:0.9em;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media(max-width:600px){
+
+    header h1{
+        font-size:1.7em;
+    }
+
+    .section{
+        margin:15px;
+        padding:20px;
+    }
+
+    .menu{
+        padding:12px;
+    }
+
+    .menu button{
+        font-size:0.9em;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     CABEÇALHO
+========================= -->
+
+<header>
+
+<h1>📚 Enciclopédia de IA e Biotecnologia</h1>
+
+<p>
+Um espaço para conhecer os conceitos, aplicações,
+história e importância da Inteligência Artificial e da Biotecnologia.
+</p>
+
+</header>
+
+
+<!-- =========================
+     MENU
+========================= -->
+
+<div class="menu">
+
+<button onclick="showTab('inicio')">
+Início
+</button>
+
+<button onclick="showTab('ia')">
+Inteligência Artificial
+</button>
+
+<button onclick="showTab('biotec')">
+Biotecnologia
+</button>
+
+<button onclick="showTab('aplicacoes')">
+Aplicações
+</button>
+
+<button onclick="showTab('glossario')">
+Glossário
+</button>
+
+<button onclick="showTab('quiz')">
+Quiz
+</button>
+
+</div>
+
+
+<!-- =========================
+     INÍCIO
+========================= -->
+
+<div id="inicio" class="section active">
+
+<h2>Introdução</h2>
+
+<p>
+A Inteligência Artificial e a Biotecnologia são duas áreas
+científicas e tecnológicas que possuem grande importância
+no desenvolvimento da sociedade.
+</p>
+
+<p>
+A Inteligência Artificial está relacionada à criação de
+sistemas computacionais capazes de realizar tarefas que
+normalmente exigiriam algum tipo de capacidade humana,
+como reconhecer padrões, interpretar informações e aprender
+com dados.
+</p>
+
+<p>
+Já a Biotecnologia utiliza organismos vivos, células,
+moléculas e processos biológicos para desenvolver produtos
+e soluções para diferentes áreas.
+</p>
+
+<div class="info">
+
+<strong>Você sabia?</strong>
+
+<p>
+Apesar de serem áreas diferentes, Inteligência Artificial
+e Biotecnologia podem trabalhar juntas. A IA pode, por exemplo,
+auxiliar pesquisadores na análise de grandes quantidades
+de informações biológicas.
+</p>
+
+</div>
+
+
+<h3>Objetivo desta enciclopédia</h3>
+
+<p>
+Este site tem como objetivo apresentar informações básicas
+sobre essas duas áreas de maneira organizada e acessível,
+explicando seus principais conceitos, aplicações,
+vantagens e desafios.
+</p>
+
+</div>
+
+
+<!-- =========================
+     INTELIGÊNCIA ARTIFICIAL
+========================= -->
+
+<div id="ia" class="section">
+
+<h2>🤖 Inteligência Artificial</h2>
+
+<h3>O que é?</h3>
+
+<p>
+Inteligência Artificial, conhecida como IA, é uma área da
+computação dedicada ao desenvolvimento de sistemas capazes
+de executar tarefas que normalmente dependem de capacidades
+humanas.
+</p>
+
+<p>
+Entre essas capacidades estão o reconhecimento de padrões,
+a interpretação de informações, a tomada de decisões e
+o aprendizado a partir de dados.
+</p>
+
+
+<h3>Como surgiu?</h3>
+
+<p>
+As ideias relacionadas à Inteligência Artificial começaram
+a ganhar força no século XX. Pesquisadores passaram a estudar
+a possibilidade de criar máquinas capazes de solucionar
+problemas e reproduzir determinadas habilidades humanas.
+</p>
+
+<p>
+O termo "Inteligência Artificial" foi utilizado oficialmente
+em 1956, durante uma conferência realizada em Dartmouth,
+nos Estados Unidos.
+</p>
+
+
+<h3>Principais áreas da IA</h3>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>Machine Learning</h3>
+
+<p>
+Permite que sistemas encontrem padrões em dados e utilizem
+essas informações para realizar previsões ou classificações.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>Deep Learning</h3>
+
+<p>
+Utiliza redes neurais artificiais com várias camadas para
+processar grandes quantidades de dados.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>Visão Computacional</h3>
+
+<p>
+Permite que computadores processem e interpretem informações
+presentes em imagens e vídeos.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>Processamento de Linguagem Natural</h3>
+
+<p>
+Área responsável pelo desenvolvimento de sistemas capazes
+de trabalhar com linguagem humana.
+</p>
+
+</div>
+
+</div>
+
+
+<h3>Exemplos de utilização</h3>
+
+<ul>
+
+<li>Assistentes virtuais</li>
+
+<li>Reconhecimento facial</li>
+
+<li>Recomendação de conteúdos</li>
+
+<li>Tradução automática</li>
+
+<li>Análise de dados</li>
+
+<li>Detecção de padrões</li>
+
+<li>Automação de tarefas</li>
+
+</ul>
+
+
+<h3>Desafios da Inteligência Artificial</h3>
+
+<ul>
+
+<li>Privacidade dos dados</li>
+
+<li>Segurança</li>
+
+<li>Possibilidade de erros</li>
+
+<li>Uso responsável da tecnologia</li>
+
+<li>Impactos no mercado de trabalho</li>
+
+</ul>
+
+</div>
+
+
+<!-- =========================
+     BIOTECNOLOGIA
+========================= -->
+
+<div id="biotec" class="section">
+
+<h2>🧬 Biotecnologia</h2>
+
+<h3>O que é?</h3>
+
+<p>
+Biotecnologia é a área que utiliza organismos vivos,
+células, genes ou moléculas biológicas para desenvolver
+produtos e processos úteis para a sociedade.
+</p>
+
+
+<h3>História</h3>
+
+<p>
+Embora o termo biotecnologia seja relativamente moderno,
+os seres humanos utilizam processos biológicos há milhares
+de anos.
+</p>
+
+<p>
+A produção de alimentos como pão, queijo e bebidas
+fermentadas são exemplos antigos da utilização de
+processos biológicos.
+</p>
+
+<p>
+Com o avanço da ciência, a biotecnologia passou a utilizar
+técnicas mais avançadas de genética, microbiologia,
+biologia molecular e engenharia genética.
+</p>
+
+
+<h3>Principais áreas</h3>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>🧬 Engenharia Genética</h3>
+
+<p>
+Estudo e modificação do material genético dos organismos
+por meio de técnicas específicas.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>💊 Biotecnologia Médica</h3>
+
+<p>
+Utilização da biotecnologia para desenvolver medicamentos,
+vacinas e outras soluções relacionadas à saúde.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>🌱 Biotecnologia Agrícola</h3>
+
+<p>
+Aplicação de conhecimentos biológicos na agricultura,
+incluindo pesquisas relacionadas a plantas e produção.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<h3>🌎 Biotecnologia Ambiental</h3>
+
+<p>
+Utilização de organismos e processos biológicos para
+auxiliar na solução de problemas ambientais.
+</p>
+
+</div>
+
+</div>
+
+
+<h3>Exemplos de aplicações</h3>
+
+<ul>
+
+<li>Produção de medicamentos</li>
+
+<li>Desenvolvimento de vacinas</li>
+
+<li>Produção de alimentos</li>
+
+<li>Melhoramento de plantas</li>
+
+<li>Tratamento de resíduos</li>
+
+<li>Pesquisas genéticas</li>
+
+<li>Produção de enzimas</li>
+
+</ul>
+
+
+<h3>Desafios da Biotecnologia</h3>
+
+<ul>
+
+<li>Questões éticas</li>
+
+<li>Segurança biológica</li>
+
+<li>Impactos ambientais</li>
+
+<li>Regulamentação</li>
+
+<li>Uso responsável das tecnologias genéticas</li>
+
+</ul>
+
+</div>
+
+
+<!-- =========================
+     APLICAÇÕES
+========================= -->
+
+<div id="aplicacoes" class="section">
+
+<h2>🌎 Aplicações no mundo real</h2>
+
+<p>
+A Inteligência Artificial e a Biotecnologia estão presentes
+em diversas áreas da sociedade.
+</p>
+
+
+<div class="table-container">
+
+<table>
+
+<tr>
+
+<th>Área</th>
+
+<th>Inteligência Artificial</th>
+
+<th>Biotecnologia</th>
+
+</tr>
+
+
+<tr>
+
+<td>Saúde</td>
+
+<td>
+Análise de exames, auxílio em diagnósticos e análise de dados.
+</td>
+
+<td>
+Medicamentos, vacinas e pesquisas genéticas.
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Agricultura</td>
+
+<td>
+Análise de plantações e previsão de condições.
+</td>
+
+<td>
+Melhoramento de plantas e desenvolvimento de soluções biológicas.
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Meio ambiente</td>
+
+<td>
+Monitoramento e análise de grandes quantidades de dados ambientais.
+</td>
+
+<td>
+Tratamento de resíduos e processos de recuperação ambiental.
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Indústria</td>
+
+<td>
+Automação e otimização de processos.
+</td>
+
+<td>
+Produção de enzimas, materiais e produtos biológicos.
+</td>
+
+</tr>
+
+</table>
+
+</div>
+
+
+<h3>IA + Biotecnologia</h3>
+
+<p>
+A combinação das duas áreas permite utilizar computadores
+para analisar informações biológicas em grande escala.
+</p>
+
+<p>
+Isso pode auxiliar pesquisadores na identificação de padrões,
+análise genética, estudo de moléculas e desenvolvimento
+de novas pesquisas.
+</p>
+
+</div>
+
+
+<!-- =========================
+     GLOSSÁRIO
+========================= -->
+
+<div id="glossario" class="section">
+
+<h2>📖 Glossário</h2>
+
+
+<div class="term">
+
+<strong>Algoritmo</strong>
+
+<p>
+Conjunto de instruções utilizadas para solucionar um problema
+ou realizar uma tarefa.
+</p>
+
+</div>
+
+
+<div class="term">
+
+<strong>Inteligência Artificial</strong>
+
+<p>
+Área da computação que desenvolve sistemas capazes de realizar
+tarefas associadas a capacidades humanas.
+</p>
+
+</div>
+
+
+<div class="term">
+
+<strong>Machine Learning</strong>
+
+<p>
+Área da IA que permite aos sistemas aprender padrões a partir
+de dados.
+</p>
+
+</div>
+
+
+<div class="term">
+
+<strong>DNA</strong>
+
+<p>
+Molécula que armazena as informações genéticas dos seres vivos.
+</p>
+
+</div>
+
+
+<div class="term">
+
+<strong>Gene</strong>
+
+<p>
+Segmento do DNA que contém informações relacionadas a
+características e funções biológicas.
+</p>
+
+</div>
+
+
+<div class="term">
+
+<strong>Biotecnologia</strong>
+
+<p>
+Área que utiliza organismos, células ou componentes biológicos
+para desenvolver produtos e processos.
+</p>
+
+</div>
+
+
+<div class="term">
+
+<strong>Engenharia Genética</strong>
+
+<p>
+Conjunto de técnicas utilizadas para estudar e modificar
+material genético.
+</p>
+
+</div>
+
+
+<div class="term">
+
+<strong>Rede Neural Artificial</strong>
+
+<p>
+Modelo computacional inspirado, de forma simplificada,
+no funcionamento de redes de neurônios.
+</p>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     QUIZ
+========================= -->
+
+<div id="quiz" class="section">
+
+<h2>🧠 Quiz</h2>
+
+<p>
+Qual dessas tecnologias está diretamente relacionada
+ao aprendizado de sistemas computacionais a partir de dados?
+</p>
+
+<div class="quiz">
+
+<button onclick="resposta('errada')">
+A) Engenharia Genética
+</button>
+
+<button onclick="resposta('certa')">
+B) Machine Learning
+</button>
+
+<button onclick="resposta('errada')">
+C) Fermentação
+</button>
+
+<button onclick="resposta('errada')">
+D) Cultura de tecidos
+</button>
+
+</div>
+
+<p id="resultado"></p>
+
+</div>
+
+
+<!-- =========================
+     RODAPÉ
+========================= -->
+
+<footer>
+
+<p>
+Enciclopédia de Inteligência Artificial e Biotecnologia
+</p>
+
+<p>
+Projeto educacional
+</p>
+
+</footer>
+
+
+<script>
+
+function showTab(id){
+
+    document
+        .querySelectorAll('.section')
+        .forEach(section => {
+            section.classList.remove('active');
+        });
+
+    document
+        .getElementById(id)
+        .classList.add('active');
+
+    window.scrollTo({
+        top:0,
+        behavior:'smooth'
+    });
+}
+
+
+function resposta(tipo){
+
+    let resultado =
+        document.getElementById('resultado');
+
+    if(tipo === "certa"){
+
+        resultado.innerText =
+        "✅ Correto! Machine Learning é uma área da Inteligência Artificial que utiliza dados para identificar padrões e aprender.";
+
+    }else{
+
+        resultado.innerText =
+        "❌ Não é essa. A resposta correta é Machine Learning.";
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
