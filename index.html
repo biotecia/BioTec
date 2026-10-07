@@ -1,1 +1,911 @@
-
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width,
+initial-scale=1.0">
+ <title>BioAI Lab — Inteligência Artificial e Biotecnologia</title>
+ <style>
+ /* =====================================================
+ RESET
+ ===================================================== */
+ * {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+ }
+ html {
+ scroll-behavior: smooth;
+ }
+ body {
+ font-family: Arial, Helvetica, sans-serif;
+ background: #17344d;
+ color: #f4f8fb;
+ line-height: 1.6;
+ }
+ a {
+ color: inherit;
+ text-decoration: none;
+ }
+ /* =====================================================
+ CORES PRINCIPAIS
+ ===================================================== */
+ :root {
+ --bg: #17344d; bg-dark: #122b40;
+ --panel: #1b5f87;
+ --panel-light: #216c96;
+ --blue: #1596d1;
+ --blue-light: #28b6f6;
+ --border: #2789b8;
+ --white: #ffffff;
+ --text: #edf6fb;
+ --text-soft: #c7d9e5;
+ --text-muted: #9fb6c5;
+ }
+ /* =====================================================
+ HEADER
+ ===================================================== */
+ header {
+ position: sticky;
+ top: 0;
+ z-index: 100;
+ width: 100%;
+ background: rgba(18, 43, 64, 0.96);
+ border-bottom: 1px solid rgba(40, 182, 246, 0.25);
+ backdrop-filter: blur(12px);
+ }
+ .nav {
+ max-width: 1200px;
+ margin: auto;
+ display: flex;
+ align-items: center;
+ justify-content: space-between; padding: 18px 30px;
+ }
+ .logo {
+ font-size: 1.25rem;
+ font-weight: 700;
+ color: var(--blue-light);
+ letter-spacing: 0.5px;
+ }
+ .logo span {
+ color: white;
+ }
+ nav {
+ display: flex;
+ gap: 28px;
+ }
+ nav a {
+ color: var(--text-soft);
+ font-size: 0.9rem;
+ transition: 0.25s;
+ }
+ nav a:hover {
+ color: var(--blue-light);
+ }
+ /* =====================================================
+ HERO
+ ===================================================== */
+ .hero {
+ max-width: 1200px;
+ margin: auto;
+ min-height: 620px; padding: 90px 30px;
+ display: grid;
+ grid-template-columns: 1.1fr 0.9fr;
+ align-items: center;
+ gap: 70px;
+ }
+ .hero-content {
+ max-width: 650px;
+ }
+ .tag {
+ display: inline-block;
+ padding: 7px 14px;
+ border-radius: 20px;
+ background: rgba(40, 182, 246, 0.12);
+ border: 1px solid rgba(40, 182, 246, 0.3);
+ color: var(--blue-light);
+ font-size: 0.75rem;
+ margin-bottom: 20px;
+ }
+ .hero h1 {
+ font-size: clamp(2.4rem, 5vw, 4.4rem);
+ line-height: 1.08;
+ margin-bottom: 25px;
+ color: white;
+ }
+ .hero h1 span { color: var(--blue-light);
+ }
+ .hero p {
+ color: var(--text-soft);
+ font-size: 1.05rem;
+ max-width: 620px;
+ margin-bottom: 30px;
+ }
+ .definition {
+ padding: 20px;
+ border-left: 4px solid var(--blue-light);
+ background: rgba(33, 108, 150, 0.35);
+ border-radius: 0 10px 10px 0;
+ color: var(--text-soft);
+ font-size: 0.92rem;
+ }
+ /* =====================================================
+ PAINEL COMO FUNCIONA
+ ===================================================== */
+ .science-card {
+ background: var(--panel);
+ border: 1px solid var(--border);
+ border-radius: 16px;
+ padding: 30px;
+ box-shadow:
+ 0 20px 50px rgba(0, 0, 0, 0.18); }
+ .science-card h3 {
+ color: var(--blue-light);
+ font-size: 1.25rem;
+ margin-bottom: 15px;
+ }
+ .science-card > p {
+ color: var(--text-soft);
+ font-size: 0.9rem;
+ margin-bottom: 25px;
+ }
+ .process {
+ display: flex;
+ flex-direction: column;
+ gap: 10px;
+ }
+ .process-item {
+ display: grid;
+ grid-template-columns: 45px 1fr;
+ column-gap: 12px;
+ align-items: center;
+ padding: 13px;
+ border: 1px solid rgba(255,255,255,0.1);
+ border-radius: 10px;
+ background: rgba(255,255,255,0.05);
+ } .process-icon {
+ grid-row: span 2;
+ width: 40px;
+ height: 40px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ border-radius: 9px;
+ background: rgba(40, 182, 246, 0.12);
+ font-size: 1.15rem;
+ }
+ .process-item strong {
+ color: white;
+ font-size: 0.85rem;
+ }
+ .process-item span {
+ color: var(--text-soft);
+ font-size: 0.72rem;
+ }
+ .process-arrow {
+ text-align: center;
+ color: var(--blue-light);
+ font-size: 1.3rem;
+ }
+ /* =====================================================
+ SEÇÕES
+ ===================================================== */ section {
+ padding: 90px 30px;
+ }
+ .container {
+ max-width: 1200px;
+ margin: auto;
+ }
+ .section-title {
+ margin-bottom: 45px;
+ }
+ .section-title small {
+ display: block;
+ color: var(--blue-light);
+ font-size: 0.75rem;
+ text-transform: uppercase;
+ letter-spacing: 1.5px;
+ margin-bottom: 10px;
+ }
+ .section-title h2 {
+ font-size: 2.2rem;
+ color: white;
+ margin-bottom: 12px;
+ }
+ .section-title p {
+ max-width: 700px;
+ color: var(--text-soft);
+ } /* =====================================================
+ VISÃO GERAL
+ ===================================================== */
+ .overview {
+ background: var(--bg-dark);
+ border-top: 1px solid rgba(255,255,255,0.05);
+ border-bottom: 1px solid rgba(255,255,255,0.05);
+ }
+ .overview-grid {
+ display: grid;
+ grid-template-columns: repeat(3, 1fr);
+ gap: 20px;
+ }
+ .info-card {
+ padding: 28px;
+ background: var(--panel);
+ border: 1px solid var(--border);
+ border-radius: 14px;
+ transition: 0.25s;
+ }
+ .info-card:hover {
+ transform: translateY(-4px);
+ border-color: var(--blue-light);
+ }
+ .info-card h3 {
+ color: var(--blue-light);
+ margin-bottom: 12px; font-size: 1.1rem;
+ }
+ .info-card p {
+ color: var(--text-soft);
+ font-size: 0.9rem;
+ }
+ /* =====================================================
+ INFO BOX
+ ===================================================== */
+ .facts {
+ margin-top: 30px;
+ padding: 25px;
+ background: rgba(33, 108, 150, 0.35);
+ border: 1px solid rgba(40, 182, 246, 0.2);
+ border-radius: 12px;
+ }
+ .facts-grid {
+ display: grid;
+ grid-template-columns: repeat(5, 1fr);
+ gap: 15px;
+ }
+ .fact {
+ padding: 12px;
+ border-right: 1px solid rgba(255,255,255,0.08);
+ }
+ .fact:last-child {
+ border-right: none; }
+ .fact strong {
+ display: block;
+ color: var(--blue-light);
+ font-size: 0.75rem;
+ margin-bottom: 4px;
+ }
+ .fact span {
+ color: var(--text-soft);
+ font-size: 0.82rem;
+ }
+ /* =====================================================
+ APLICAÇÕES
+ ===================================================== */
+ .applications {
+ background: var(--bg);
+ }
+ .applications-grid {
+ display: grid;
+ grid-template-columns: repeat(3, 1fr);
+ gap: 20px;
+ }
+ .application-card {
+ padding: 28px;
+ min-height: 220px;
+ background: var(--panel);
+ border: 1px solid var(--border); border-radius: 14px;
+ transition: 0.25s;
+ }
+ .application-card:hover {
+ transform: translateY(-5px);
+ box-shadow:
+ 0 15px 35px rgba(0, 0, 0, 0.18);
+ border-color: var(--blue-light);
+ }
+ .application-number {
+ color: var(--blue-light);
+ font-size: 0.75rem;
+ margin-bottom: 15px;
+ }
+ .application-card h3 {
+ color: white;
+ margin-bottom: 12px;
+ font-size: 1.15rem;
+ }
+ .application-card p {
+ color: var(--text-soft);
+ font-size: 0.88rem;
+ }
+ /* =====================================================
+ IMPACTO
+ ===================================================== */
+ .impact { background: var(--bg-dark);
+ }
+ .stats {
+ display: grid;
+ grid-template-columns: repeat(3, 1fr);
+ gap: 20px;
+ }
+ .stat {
+ padding: 35px 25px;
+ text-align: center;
+ background: var(--panel);
+ border: 1px solid var(--border);
+ border-radius: 14px;
+ }
+ .stat strong {
+ display: block;
+ font-size: 2.5rem;
+ color: var(--blue-light);
+ margin-bottom: 5px;
+ }
+ .stat span {
+ color: var(--text-soft);
+ font-size: 0.85rem;
+ }
+ /* =====================================================
+ ÉTICA
+ ===================================================== */ .ethics-grid {
+ display: grid;
+ grid-template-columns: repeat(4, 1fr);
+ gap: 18px;
+ }
+ .ethics-card {
+ padding: 25px;
+ background: var(--panel);
+ border: 1px solid var(--border);
+ border-radius: 13px;
+ }
+ .ethics-card h3 {
+ color: var(--blue-light);
+ margin-bottom: 10px;
+ font-size: 1rem;
+ }
+ .ethics-card p {
+ color: var(--text-soft);
+ font-size: 0.82rem;
+ }
+ /* =====================================================
+ CONCLUSÃO
+ ===================================================== */
+ .conclusion {
+ text-align: center;
+ background: var(--bg-dark); border-top: 1px solid rgba(255,255,255,0.05);
+ }
+ .conclusion h2 {
+ color: white;
+ font-size: 2.3rem;
+ margin-bottom: 15px;
+ }
+ .conclusion p {
+ max-width: 700px;
+ margin: auto;
+ color: var(--text-soft);
+ }
+ /* =====================================================
+ FOOTER
+ ===================================================== */
+ footer {
+ padding: 45px 30px;
+ background: #10283b;
+ border-top: 1px solid rgba(40, 182, 246, 0.15);
+ }
+ .footer-content {
+ max-width: 1200px;
+ margin: auto;
+ display: grid;
+ grid-template-columns: 2fr 1fr;
+ gap: 50px;
+ } .footer-logo {
+ color: var(--blue-light);
+ font-size: 1.2rem;
+ font-weight: bold;
+ margin-bottom: 12px;
+ }
+ footer p {
+ color: var(--text-muted);
+ font-size: 0.82rem;
+ max-width: 550px;
+ }
+ .footer-links {
+ display: flex;
+ flex-direction: column;
+ gap: 8px;
+ }
+ .footer-links a {
+ color: var(--text-soft);
+ font-size: 0.82rem;
+ transition: 0.2s;
+ }
+ .footer-links a:hover {
+ color: var(--blue-light);
+ }
+ .copyright {
+ max-width: 1200px;
+ margin: 35px auto 0; padding-top: 20px;
+ border-top: 1px solid rgba(255,255,255,0.08);
+ color: var(--text-muted);
+ font-size: 0.72rem;
+ }
+ /* =====================================================
+ RESPONSIVIDADE
+ ===================================================== */
+ @media (max-width: 900px) {
+ .hero {
+ grid-template-columns: 1fr;
+ padding-top: 60px;
+ gap: 40px;
+ }
+ .overview-grid,
+ .applications-grid {
+ grid-template-columns: repeat(2, 1fr);
+ }
+ .facts-grid {
+ grid-template-columns: repeat(2, 1fr);
+ }
+ .fact {
+ border-right: none;
+ }
+ .stats {
+ grid-template-columns: repeat(3, 1fr);
+ }
+ .ethics-grid { grid-template-columns: repeat(2, 1fr);
+ }
+ }
+ @media (max-width: 650px) {
+ .nav {
+ padding: 15px 20px;
+ }
+ nav {
+ display: none;
+ }
+ section {
+ padding: 65px 20px;
+ }
+ .hero {
+ padding: 55px 20px;
+ }
+ .hero h1 {
+ font-size: 2.5rem;
+ }
+ .overview-grid,
+ .applications-grid,
+ .stats,
+ .ethics-grid,
+ .facts-grid {
+ grid-template-columns: 1fr;
+ }
+ .section-title h2 {
+ font-size: 1.8rem;
+ }
+ .footer-content {
+ grid-template-columns: 1fr;
+ } .conclusion h2 {
+ font-size: 1.8rem;
+ }
+ }
+ </style>
+</head>
+<body>
+ <!-- =====================================================
+ HEADER
+ ===================================================== -->
+ <header>
+ <div class="nav">
+ <div class="logo">
+ Bio<span>AI</span> Lab
+ </div>
+ <nav>
+ <a href="#sobre">Sobre</a>
+ <a href="#aplicacoes">Aplicações</a>
+ <a href="#impacto">Impacto</a>
+ <a href="#etica">Ética</a>
+ <a href="#enciclopedia">Enciclopédia</a>
+ </nav>
+ </div>
+ </header>
+ <!-- =====================================================
+ HERO
+ ===================================================== -->
+ <main>
+ <section class="hero" id="enciclopedia"> <div class="hero-content">
+ <div class="tag">
+ ENCICLOPÉDIA • BIOAI
+ </div>
+ <h1>
+ Inteligência Artificial
+ <span>&</span>
+ Biotecnologia
+ </h1>
+ <p>
+ A integração entre inteligência artificial e
+ biotecnologia está transformando a maneira como
+ pesquisadores compreendem a vida, desenvolvem
+ tratamentos e criam novas soluções científicas.
+ </p>
+ <div class="definition">
+ <strong>Definição</strong><br>
+ BioAI é o campo interdisciplinar que combina
+ métodos de inteligência artificial, ciência de
+ dados e biotecnologia para analisar informações
+ biológicas e auxiliar na resolução de problemas
+ científicos e médicos.
+ </div>
+ </div>
+ <div class="science-card">
+ <h3>
+ COMO FUNCIONA?
+ </h3>
+ <p>
+ A Inteligência Artificial pode analisar dados
+ biológicos para auxiliar pesquisadores na descoberta de novos conhecimentos.
+ </p>
+ <div class="process">
+ <div class="process-item">
+ <div class="process-icon">
+ 🧬
+ </div>
+ <strong>
+ Dados biológicos
+ </strong>
+ <span>
+ DNA, proteínas e células
+ </span>
+ </div>
+ <div class="process-arrow">
+ ↓
+ </div>
+ <div class="process-item">
+ <div class="process-icon">
+ 🤖
+ </div>
+ <strong>
+ Inteligência Artificial
+ </strong>
+ <span>
+ Análise de padrões e dados
+ </span>
+ </div> <div class="process-arrow">
+ ↓
+ </div>
+ <div class="process-item">
+ <div class="process-icon">
+ 🔬
+ </div>
+ <strong>
+ Descobertas
+ </strong>
+ <span>
+ Novos conhecimentos científicos
+ </span>
+ </div>
+ </div>
+ </div>
+ </section>
+ <!-- =================================================
+ VISÃO GERAL
+ ================================================== -->
+ <section class="overview" id="sobre">
+ <div class="container">
+ <div class="section-title">
+ <small>
+ Visão geral
+ </small> <h2>
+ O encontro entre tecnologia e biologia
+ </h2>
+ <p>
+ A inteligência artificial permite processar
+ grandes volumes de informações, enquanto a
+ biotecnologia utiliza conhecimentos sobre
+ organismos vivos para desenvolver novas
+ tecnologias.
+ </p>
+ </div>
+ <div class="overview-grid">
+ <div class="info-card">
+ <h3>
+ Inteligência Artificial
+ </h3>
+ <p>
+ Conjunto de técnicas computacionais
+ capazes de identificar padrões,
+ analisar dados e auxiliar na tomada
+ de decisões.
+ </p>
+ </div>
+ <div class="info-card">
+ <h3>
+ Biotecnologia
+ </h3>
+ <p>
+ Área científica que utiliza organismos,
+ células e processos biológicos para
+ desenvolver produtos e soluções. </p>
+ </div>
+ <div class="info-card">
+ <h3>
+ Convergência
+ </h3>
+ <p>
+ A combinação dessas áreas permite analisar
+ informações biológicas em grande escala,
+ acelerando pesquisas e descobertas.
+ </p>
+ </div>
+ </div>
+ <div class="facts">
+ <div class="facts-grid">
+ <div class="fact">
+ <strong>ÁREA</strong>
+ <span>Ciência e Tecnologia</span>
+ </div>
+ <div class="fact">
+ <strong>CAMPO</strong>
+ <span>Bioinformática e IA</span>
+ </div>
+ <div class="fact">
+ <strong>COMPUTAÇÃO</strong>
+ <span>Aprendizado de máquina</span>
+ </div>
+ <div class="fact">
+ <strong>BIOLOGIA</strong> <span>DNA, células e proteínas</span>
+ </div>
+ <div class="fact">
+ <strong>APLICAÇÕES</strong>
+ <span>Medicina e pesquisa</span>
+ </div>
+ </div>
+ </div>
+ </div>
+ </section>
+ <!-- =================================================
+ APLICAÇÕES
+ ================================================== -->
+ <section class="applications" id="aplicacoes">
+ <div class="container">
+ <div class="section-title">
+ <small>
+ Aplicações
+ </small>
+ <h2>
+ Onde a BioAI pode ser utilizada?
+ </h2>
+ <p>
+ A integração entre inteligência artificial
+ e biotecnologia possui aplicações em diversas
+ áreas da ciência e da saúde.
+ </p>
+ </div> <div class="applications-grid">
+ <div class="application-card">
+ <div class="application-number">
+ 01
+ </div>
+ <h3>
+ Descoberta de Medicamentos
+ </h3>
+ <p>
+ Algoritmos podem analisar moléculas e
+ auxiliar pesquisadores na identificação
+ de possíveis candidatos a novos
+ medicamentos.
+ </p>
+ </div>
+ <div class="application-card">
+ <div class="application-number">
+ 02
+ </div>
+ <h3>
+ Genômica de Precisão
+ </h3>
+ <p>
+ A IA pode auxiliar na análise de grandes
+ quantidades de dados genéticos, permitindo
+ identificar padrões relacionados a
+ características e doenças.
+ </p>
+ </div> <div class="application-card">
+ <div class="application-number">
+ 03
+ </div>
+ <h3>
+ Biologia Sintética
+ </h3>
+ <p>
+ Ferramentas computacionais podem ajudar
+ cientistas a projetar e analisar sistemas
+ biológicos com determinadas funções.
+ </p>
+ </div>
+ <div class="application-card">
+ <div class="application-number">
+ 04
+ </div>
+ <h3>
+ Neurotecnologia
+ </h3>
+ <p>
+ Técnicas de IA podem ser utilizadas para
+ interpretar sinais neurais e apoiar o
+ desenvolvimento de novas tecnologias.
+ </p>
+ </div>
+ <div class="application-card">
+ <div class="application-number">
+ 05
+ </div> <h3>
+ Agricultura
+ </h3>
+ <p>
+ A análise de dados pode auxiliar no
+ monitoramento de plantações, identificação
+ de doenças e melhoria da produtividade.
+ </p>
+ </div>
+ <div class="application-card">
+ <div class="application-number">
+ 06
+ </div>
+ <h3>
+ Bioinformática
+ </h3>
+ <p>
+ A combinação de computação e biologia
+ permite organizar, analisar e interpretar
+ grandes conjuntos de dados biológicos.
+ </p>
+ </div>
+ </div>
+ </div>
+ </section>
+ <!-- =================================================
+ IMPACTO
+ ================================================== --> <section class="impact" id="impacto">
+ <div class="container">
+ <div class="section-title">
+ <small>
+ Impacto científico
+ </small>
+ <h2>
+ Uma nova forma de pesquisar
+ </h2>
+ <p>
+ A inteligência artificial pode contribuir
+ para acelerar processos científicos e
+ permitir análises que seriam difíceis de
+ realizar manualmente.
+ </p>
+ </div>
+ <div class="stats">
+ <div class="stat">
+ <strong>10×</strong>
+ <span>
+ maior capacidade de análise de grandes
+ volumes de dados
+ </span>
+ </div>
+ <div class="stat">
+ <strong>IA</strong>
+ <span> identificação de padrões complexos
+ </span>
+ </div>
+ <div class="stat">
+ <strong>DNA</strong>
+ <span>
+ análise de informações genéticas
+ </span>
+ </div>
+ </div>
+ </div>
+ </section>
+ <!-- =================================================
+ ÉTICA
+ ================================================== -->
+ <section id="etica">
+ <div class="container">
+ <div class="section-title">
+ <small>
+ Ética e responsabilidade
+ </small>
+ <h2>
+ Tecnologia também exige responsabilidade
+ </h2>
+ <p>
+ O avanço da BioAI precisa ser acompanhado por princípios que protejam pessoas, dados
+ e a sociedade.
+ </p>
+ </div>
+ <div class="ethics-grid">
+ <div class="ethics-card">
+ <h3>
+ Privacidade
+ </h3>
+ <p>
+ Dados biológicos e genéticos devem ser
+ tratados com segurança e respeito à
+ privacidade.
+ </p>
+ </div>
+ <div class="ethics-card">
+ <h3>
+ Segurança
+ </h3>
+ <p>
+ Sistemas e pesquisas precisam considerar
+ possíveis riscos associados às novas
+ tecnologias.
+ </p>
+ </div>
+ <div class="ethics-card">
+ <h3>
+ Transparência </h3>
+ <p>
+ Os processos utilizados por sistemas de IA
+ devem ser compreendidos e avaliados.
+ </p>
+ </div>
+ <div class="ethics-card">
+ <h3>
+ Responsabilidade
+ </h3>
+ <p>
+ O desenvolvimento tecnológico deve buscar
+ benefícios científicos e sociais.
+ </p>
+ </div>
+ </div>
+ </div>
+ </section>
+ <!-- =================================================
+ CONCLUSÃO
+ ================================================== -->
+ <section class="conclusion">
+ <div class="container">
+ <h2>
+ A próxima fronteira da ciência já começou.
+ </h2>
+ <p> A união entre inteligência artificial e
+ biotecnologia representa uma das áreas mais
+ promissoras da ciência moderna, conectando
+ computação, biologia e inovação para enfrentar
+ desafios complexos.
+ </p>
+ </div>
+ </section>
+ </main>
+ <!-- =====================================================
+ FOOTER
+ ===================================================== -->
+ <footer>
+ <div class="footer-content">
+ <div>
+ <div class="footer-logo">
+ BioAI Lab
+ </div>
+ <p>
+ Enciclopédia de Inteligência Artificial e
+ Biotecnologia. Um espaço informativo sobre
+ a integração entre ciência, tecnologia e
+ biologia.
+ </p>
+ </div>
+ <div class="footer-links">
+ <a href="#sobre">
+ Sobre
+ </a> <a href="#aplicacoes">
+ Aplicações
+ </a>
+ <a href="#impacto">
+ Impacto
+ </a>
+ <a href="#etica">
+ Ética
+ </a>
+ </div>
+ </div>
+ <div class="copyright">
+ © 2026 BioAI Lab — Enciclopédia de Inteligência
+ Artificial e Biotecnologia.
+ </div>
+ </footer>
+</body>
+</html>
